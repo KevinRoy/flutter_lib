@@ -8,6 +8,24 @@ class NavigatorUtils {
     Navigator.push(context, MaterialPageRoute(builder: (context) => widget));
   }
 
+  static Future pushAsync(BuildContext context, Widget widget) async {
+    final result = await Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => widget),
+    );
+
+    return result;
+  }
+
+  static bool pop(BuildContext context) {
+    return Navigator.pop(context);
+  }
+
+
+  static bool popAsync<T>(BuildContext context, T result) {
+    return Navigator.pop(context, result);
+  }
+
   static pushReplacement(BuildContext context, Widget widget) {
     Navigator.pushReplacement(
         context, MaterialPageRoute(builder: (context) => widget));
@@ -18,22 +36,5 @@ class NavigatorUtils {
         context,
         MaterialPageRoute(builder: (context) => widget),
         (route) => route == null);
-  }
-
-  static bool pop(BuildContext context) {
-    return Navigator.pop(context);
-  }
-
-  static Future pushAsync(BuildContext context, Widget widget) async {
-    final result = await Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => widget),
-    );
-
-    return result;
-  }
-
-  static bool popAsync<T>(BuildContext context, T result) {
-    return Navigator.pop(context, result);
   }
 }
